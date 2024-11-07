@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Champions</title>
+    <link rel="stylesheet" href="champions.css">
+</head>
+    <header class = "header-container">
+        <div> </div>
+    </header>
+
+<body>
+
+    <div class = "title-container">
+        <h1> Champions</h1>
+    </div>
+
+    <!-- Filter options -->
+    <div class="filters">
+        <section class = "filter-container">
+            <button class="filter-button" data-role="all">All</button>
+            <button class="filter-button" data-role="Mid Lane">Mid Lane</button>
+            <button class="filter-button" data-role="Top Lane">Top Lane</button>
+            <button class="filter-button" data-role="Bottom Lane">Bottom Lane</button>
+            <button class="filter-button" data-role="Support">Support</button>
+            <button class="filter-button" data-role="Jungle">Jungle</button>
+        </section>
+        <section class = "searchbar-container"> 
+            <input type="text" class = "css-searchBar" id="search-bar" oninput="searchChampions()">
+            <span class="search-icon"> <img src="./images/search.png" alt="magnifying glass"></span>
+        </section>
+
+        <select class="filter-dropdown" onchange="filterChampions(this.value)">
+            <option value="all">All</option>
+            <option value="Mid Lane">Mid Lane</option>
+            <option value="Top Lane">Top Lane</option>
+            <option value="Bottom Lane">Bottom Lane</option>
+            <option value="Support">Support</option>
+            <option value="Jungle">Jungle</option>
+        </select>
+    </div>
+    
+    <main>
+     <!-- Grid for champions -->
+     <div class = "css-champion-grid" id = "js-champion-grid"> </div>
+    </main>
+
+    <script src="champions.js"></script>
+</body>
+
+
+<footer>
+
+</footer>
+
+</html>

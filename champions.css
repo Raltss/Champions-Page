@@ -1,0 +1,310 @@
+@import url('https://fonts.cdnfonts.com/css/sk-concretica');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-image: url('/images/bg.png');
+    background-repeat: no-repeat; 
+    background-size: cover;     
+    background-position: center; 
+    background-attachment: fixed;
+ 
+}
+
+.title-container,
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    
+}
+
+.title-container h1{
+    color: white;
+    font-family: 'SK Concretica', sans-serif;
+    font-size: clamp(2rem, 5vw, 6rem); 
+    margin-bottom: 2rem;
+}
+
+.filters {
+    flex-wrap: nowrap;
+    gap: 10px; 
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 100%;
+    margin: 0 auto; /* Center the filters */
+}
+
+.filter-container{
+    display: flex;
+    gap: 10px;
+    margin-inline: clamp(1rem, 5vw, 12rem);
+}
+.filters button {
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'SK Concretica', sans-serif;
+    font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); 
+    padding: clamp(0.5rem, 1vw, 1rem); 
+
+    flex: 0 1 auto; /* Allow buttons to shrink if needed */
+    min-width: 60px; 
+}
+
+
+.filters button:hover {
+   text-decoration: underline;
+}
+
+.searchbar-container{
+    position: relative;
+    display: inline-block;
+    width: 100%; 
+    max-width: 300px; 
+    min-width: 200px;
+    margin-inline: clamp(1rem, 5vw, 12rem); 
+}
+
+.css-searchBar{
+    width: 100%;
+    padding: 10px clamp(1.5rem, 5vw, 3rem) 10px 15px;
+    font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+    
+    color: #ffffff;
+    background-color: #1a1a1a; 
+    border: 2px solid #2A7B78; 
+    border-radius: 30px; 
+    outline: none; 
+    transition: border-color 0.3s ease;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px; 
+    top: 55%;
+    transform: translateY(-50%); 
+    pointer-events: none; /* Makes the icon unclickable */
+}
+
+/* Input focus state */
+.search-input:focus {
+    border-color: #66fcf1; 
+}
+
+/* Grid layout for champions */
+.css-champion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: clamp(0.5rem, 1vw, 1rem); 
+    max-width: 100%; 
+    padding: 0 1rem; 
+
+    margin-inline: clamp(1rem, 5vw, 12rem); 
+
+    place-items: center;
+}
+
+.searching .css-champion-grid {
+    grid-template-columns: 1fr; /* Stack champions in a single column */
+    gap: 0rem; /* Make gap very narrow */
+}
+
+.champion-card {
+    position: relative;
+    overflow: hidden; 
+
+    max-width: 200px; 
+    width: 100%;
+    height: clamp(200px, 30vw, 300px);
+    border-radius: 15px;
+
+    margin: 0.5rem; 
+
+}
+.champion-card img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    object-position: 50% 50%;
+    border-radius: 10px;
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.champion-card h2 {
+    position: absolute;
+    bottom: 10px; 
+    left: 1px;   
+
+    font-size: 1.1rem;
+    font-weight: 200;
+    margin: 0;
+    padding: 5px 10px;
+    color: white;
+    transition: all 0.5s ease; 
+
+    font-family: 'SK Concretica', sans-serif;
+}
+
+.champion-card:hover h2 {
+    bottom: 50%;  /* Move to the center vertically */
+    left: 50%;    /* Move to the center horizontally */
+    transform: translate(-50%, -50%); /* Center using transform */
+    font-size: 1.5rem; /* Optional: Make the text bigger on hover */
+
+}
+    
+.champion-card:hover img {
+    transform: scale(1.2); /* Zoom effect on hover */
+    filter: blur(.5px); /* Apply blur effect */
+}
+
+.overlay {
+    position: absolute;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+    padding: 10px;
+    bottom: 0;
+    left: 0;   
+
+    width: 100%;
+    height: 100%;
+
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)); 
+    color: white;
+
+    transition: background 0.5s ease, transform 0.5s ease;
+    transform: translate(0);
+
+}
+
+/* Text inside the Overlay */
+.overlay p {
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease;
+    line-height: 0;
+    margin: .35rem;
+    font-family: 'SK Concretica', sans-serif;
+    font-size: .9rem;
+    background: rgba(0, 0, 0, 0.4); 
+}
+
+/* Hover Effect: Darken Background and Show Text */
+.champion-card:hover .overlay {
+    background: rgba(0, 0, 0, 0.4); 
+    transform: translateY(0); 
+}
+
+/* Text Fade-In */
+.champion-card:hover .overlay h2,
+.champion-card:hover .overlay p {
+    opacity: 1; /* Fade in the text */
+    transition-delay: 0.1s; /* Delay to make it smoother */
+}
+
+.overlay .role {
+    color: #66FCF1 /* Change this to your desired color */
+}
+
+.filter-dropdown {
+    display: none; /* Hide dropdown initially */
+}
+
+@media (max-width: 1024px) {
+    .css-champion-grid {
+        grid-template-columns: repeat(4, 1fr); /* Set to 3 columns for medium screens */
+        gap: 0.75rem; /* Adjust gap for medium screens */
+        margin-inline: 1rem;
+    }
+}
+
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .css-champion-grid {
+        grid-template-columns: repeat(3, 1fr); /* Set to 2 columns on mobile */
+        gap: 0.5rem; /* Decrease gap for smaller screens */
+        margin-inline: 1rem;
+    }
+    
+    .filter-container {
+        display: none; /* Hide buttons */
+   }
+
+     .filter-dropdown {
+        display: block; /* Show dropdown */
+        margin-left: clamp(10px, 3vw, 20px); /* Maintain spacing */
+        width: 100%; /* Make it full width */
+        padding: 10px; /* Add padding for better appearance */
+        border: 2px solid #2A7B78; 
+        border-radius: 30px; /* Match styling of search bar */
+        background-color: #1a1a1a; /* Dark background */
+        color: #ffffff; /* White text */
+        font-family: 'SK Concretica', sans-serif; /* Consistent font */
+        font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); /* Make font size responsive */
+    }
+    
+    .filters {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem; /* Space between buttons */
+        padding: 1rem;
+        border-radius: 8px;
+        width: 100%;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Set the order of the elements for the 1024px breakpoint */
+    .searchbar-container {
+        order: 2; /* Move the search bar to the right */
+        margin-left: 0;
+        width: 100%; /* Ensure full width */
+    }
+
+    .filter-dropdown {
+        order: 1; /* Move the filter dropdown to the left */
+        margin-left: 1.5rem;
+        width: 70%; /* Ensure full width */
+    }
+}
+
+@media (max-width: 425px) {
+    .css-champion-grid {
+        grid-template-columns: repeat(2, 1fr); /* Set to 2 columns on mobile */
+        gap: 0.5rem; /* Decrease gap for smaller screens */
+        margin-inline: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .searchbar-container {
+        margin-left: 0;
+        width: 35%; /* Ensure full width */
+    }
+
+    .filter-dropdown {
+        margin-left: 1.5rem;
+        width: 65%; /* Ensure full width */
+    }
+}
+
